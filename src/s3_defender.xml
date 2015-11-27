@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XML document created with EditiX XML Editor (http://www.editix.com) at Fri Oct 30 09:32:34 CDT 2015 -->
+
+<defender name="defender" sourceIP="10.1.1.3">
+	<securityPolicyList>
+		<securityPolicy name="allowGetOrPostRequest">
+			<endpoint>
+				 <protocol>HTTP</protocol>
+				 <port>80</port>
+			 </endpoint>
+			<trueAction>
+				<action type="pass"/>
+			</trueAction>
+			<falseAction>
+				<action type="block"/>
+			</falseAction>
+			<policy>
+				<condition name="GetRequest" />
+				<condition name="PostRequest" />
+				<operationList>
+					<operator>|</operator>
+				</operationList>
+			</policy>
+		</securityPolicy>
+		
+		<securityPolicy name="denySQLInjection">
+			<endpoint>
+				 <protocol>HTTP</protocol>
+				 <port>80</port>
+			 </endpoint>
+			<trueAction>
+				<action type="drop"/>
+			</trueAction>
+			<falseAction>
+				<action type="pass"/>
+			</falseAction>
+			<policy>
+				<condition name="GetRequest" />
+				<condition name="PostRequest" />
+				<condition name="ContainSQLInjection" />
+				<operationList>
+					<operator>|</operator>
+					<operator>&amp;</operator>
+				</operationList>
+			</policy>
+		</securityPolicy>
+	
+		<conditionList>
+			<condition name="GetRequest">
+				<subcondition name="isRequestProtocolEqualsTo">
+					HTTP
+				</subcondition>
+				<subcondition name="isHTTPMethodEqualsTo">
+					GET
+				</subcondition>
+			</condition>
+			
+			<condition name="PostRequest">
+				<subcondition name="isRequestProtocolEqualsTo">
+					HTTP
+				</subcondition>
+				<subcondition name="isHTTPMethodEqualsTo">
+					POST
+				</subcondition>
+			</condition>
+			<condition name="ContainSQLInjection">
+				<subcondition name="isParaContentMatchRegExp">
+				\w*((\%27)|(\'))(\s*)((\%6F)|o|(\%4F))((\%72)|r|(\%52))
+				</subcondition>
+			</condition>
+			
+		</conditionList>
+	</securityPolicyList>
+</defender>

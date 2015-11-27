@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XML document created with EditiX XML Editor (http://www.editix.com) at Thu Oct 29 21:15:45 CDT 2015 -->
+
+<users>
+	<user name="user1" sourceIP="199.1.1.5" type="user">
+		<requestList>
+			<request>
+				<source>199.1.1.5</source>
+				<destination>10.1.1.3</destination>
+				<protocol>HTTP</protocol>
+				<port>80</port>
+				<data>GET \index.html HTTP/1.0
+				Host: www.example.com
+				User-Agent: Mozilla 4.0
+				
+				</data>
+			</request>
+		</requestList>
+	</user>
+	
+	<user name="attacker1" sourceIP="198.1.1.2" type="attacker">
+		<requestList>
+		 
+			<request>
+				<source>198.1.1.2</source>
+				<destination>10.1.1.3</destination>
+				<protocol>FTP</protocol>
+				<port>21</port>
+				<data>GET \index.html HTTP/1.0
+				Host: www.example.com
+				User-Agent: Mozilla 4.0
+				
+				</data>
+			</request>
+
+		</requestList>
+	</user>
+		<user name="attacker2" sourceIP="198.1.1.4" type="attacker">
+		<requestList>			
+			<request>
+				<source>198.1.1.4</source>
+				<destination>10.1.1.3</destination>
+				<protocol>HTTP</protocol>
+				<port>80</port>
+				<data>POST \index.php HTTP/1.0
+				Host: www.example.com
+				User-Agent: Mozilla 4.0
+				
+				username=123&amp;password=123 'or 1=1'
+				</data>
+			</request>
+		</requestList>
+	</user>
+</users>

